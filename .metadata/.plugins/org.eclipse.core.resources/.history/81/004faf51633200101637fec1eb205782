@@ -1,0 +1,12 @@
+package ecommerceframeworkbuilding.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+
+public class Product {
+
+	WebDriver driver;
+	public Product() {
+		this.driver = driver;
+	}
+	@
+}

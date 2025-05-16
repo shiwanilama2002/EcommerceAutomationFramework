@@ -7,7 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
+import ecommerceframeworkbuilding.pageobjects.Landingpage;
+import ecommerceframeworkbuilding.pageobjects.Product;
+import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoveryStrategy.Explicit;
 
 public class StandAloneTest {
 	WebDriver driver;
@@ -17,22 +23,23 @@ public class StandAloneTest {
 		driver.get("https://rahulshettyacademy.com/client");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		String productToAdd = "ZARA COAT 3";
-		driver.findElement(By.id("userEmail")).sendKeys("testshiwanilama@gmail.com");
-		driver.findElement(By.id("userPassword")).sendKeys("Test@123");
-		driver.findElement(By.id("login")).click();
-		List<WebElement> products = driver.findElements(By.className("col-lg-4"));
-		for(WebElement product: products) {
-			String productName = product.getText();
-//			System.out.println(productName);
-			if(productName.equals(productToAdd)) {
-//				WebElement cartBtn = driver.findElement(By.cssSelector(".fa-shopping-cart"));
-//				cartBtn.click();
-				 product.findElement(By.cssSelector(".card-body button:last-of-type")).click();
-	                System.out.println("Product added to cart: " + productName);
-				System.out.println("product added to cart");
-			}
-		}
-		
+		Landingpage landingPage = new Landingpage(driver);
+		landingPage.logIn("testshiwanilama@gmail.com","Test@123");
+		Product product = new Product(driver);
+//		System.out.println(product.Get()); 
+		product. waitElementToAppear(By.className("col-lg-4"));
+//		List<WebElement> products = driver.findElements(By.className("col-lg-4"));
+//		for(WebElement product: products) {
+//			String productName = product.getText();
+////			System.out.println(productName);
+//			if(productName.equals(productToAdd)) {
+////				lWebElement cartBtn = driver.findElement(By.cssSelector(".fa-shopping-cart"));
+////				cartBtn.click();
+//				 product.findElement(By.cssSelector(".card-body button:last-of-type")).click();
+//	                System.out.println("Product added to cart: " + productName);
+//				System.out.println("product added to cart");
+//			}
+//		}
+//		
 	}
 }

@@ -1,0 +1,7 @@
+package ecommerceframeworkbuilding.abstractclass;
+
+import org.openqa.selenium.support.FindBy;
+
+public class Abstractclass {
+	@FindBy()
+}

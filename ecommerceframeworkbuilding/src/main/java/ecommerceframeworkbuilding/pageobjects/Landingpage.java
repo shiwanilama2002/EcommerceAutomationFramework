@@ -16,4 +16,17 @@ public class Landingpage {
 	@FindBy(id = "userEmail")
 	WebElement userName;
 	
+	@FindBy(id = "userPassword")
+	WebElement userPassword;
+	
+	@FindBy(id="login")
+	WebElement logIN;
+	
+	public void logIn(String uName, String uPass) {
+		userName.sendKeys(uName);
+		userPassword.sendKeys(uPass);
+		logIN.click();
+	}
+	
+	
 }
