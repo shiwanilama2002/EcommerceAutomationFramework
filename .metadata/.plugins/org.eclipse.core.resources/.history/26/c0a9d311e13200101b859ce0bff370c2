@@ -1,0 +1,43 @@
+package ecommerceframeworkbuilding.pageobjects;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import ecommerceframeworkbuilding.abstractclass.Abstractclass;
+
+public class Product extends Abstractclass{
+
+	WebDriver driver;
+	public Product(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	@FindBy(css = ".mb-3")
+	List<WebElement> products;
+	By productBy = By.cssSelector(".mb-3");
+	By addToCArt = By.cssSelector(".card-body button:last-of-type");
+	public  List<WebElement> getProductList() {
+		waitElementToAppear(productBy);
+		return products;
+	}
+	public WebElement getProductByName(String ProductName) {
+		for(WebElement product:products) {
+			String productName = product.findElement(By.cssSelector("b")).getText();
+			if(productName.equalsIgnoreCase(productName)) {
+				return product;
+			}
+		}
+		return null;
+	}
+	public void addToCart(String productName) {
+		WebElement prd = getProductByName(productName);
+		prd.findElement(addToCArt).click();
+		
+	}
+}

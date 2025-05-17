@@ -1,0 +1,49 @@
+package ecommerceframeworkbuilding;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import ecommerceframeworkbuilding.pageobjects.CartPage;
+import ecommerceframeworkbuilding.pageobjects.CheckOut;
+import ecommerceframeworkbuilding.pageobjects.Confirmationpage;
+import ecommerceframeworkbuilding.pageobjects.Landingpage;
+import ecommerceframeworkbuilding.pageobjects.Product;
+import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoveryStrategy.Explicit;
+
+public class StandAloneTest {
+	WebDriver driver;
+
+	@Test
+	public void login() throws InterruptedException {
+		driver = new ChromeDriver();
+		String prdName = "ZARA COAT 3";
+		driver.get("https://rahulshettyacademy.com/client");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		Landingpage landingPage = new Landingpage(driver);
+		Product product  = landingPage.logIn("testshiwanilama@gmail.com", "Test@123");
+//		Product product = new Product(driver);
+		List<WebElement> allProduct = product.getProductList();
+		product.addToCart(prdName);
+		product.goToCartPage();
+
+		CartPage cartPage = new CartPage(driver);
+		cartPage.isInProductCart(prdName);
+		Assert.assertTrue(cartPage.isInProductCart(prdName), "Product not found in the cart");
+		cartPage.checkoutBtn();
+		CheckOut checkOut = new CheckOut(driver);
+		checkOut.selectCountry("Nepa");
+		checkOut.submitOrder();
+		Confirmationpage confirm = new Confirmationpage(driver);
+
+	}
+}

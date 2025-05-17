@@ -1,0 +1,24 @@
+package ecommerceframeworkbuilding.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import ecommerceframeworkbuilding.abstractclass.Abstractclass;
+
+public class CheckOut extends Abstractclass{
+	WebDriver driver;
+	public CheckOut(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+		
+	}
+	@FindBy(css = "text-validated")
+	WebElement selectCountry;
+	public void checkoutInformation() {
+		selectCountry.sendKeys(null);
+	}
+
+}

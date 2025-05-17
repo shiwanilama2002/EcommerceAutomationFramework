@@ -1,0 +1,25 @@
+package ecommerceframeworkbuilding.pageobjects;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import ecommerceframeworkbuilding.abstractclass.Abstractclass;
+
+public class Product extends Abstractclass{
+
+	WebDriver driver;
+	public Product(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+	}
+	@FindBy(css = ".mb-3")
+	List<WebElement> products;
+	
+	public  List<WebElement> Get() {
+		waitElementToAppear(null);
+		return products;
+	}
+}

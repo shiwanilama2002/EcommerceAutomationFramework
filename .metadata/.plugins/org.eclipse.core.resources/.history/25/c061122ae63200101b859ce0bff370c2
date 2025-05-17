@@ -1,0 +1,9 @@
+package ecommerceframeworkbuilding.pageobjects;
+
+public class CartPage {
+	
+	By css
+	public void cartPageItemList() {
+		
+	}
+}

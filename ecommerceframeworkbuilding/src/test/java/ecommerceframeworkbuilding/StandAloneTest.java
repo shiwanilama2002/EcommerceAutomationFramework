@@ -9,37 +9,44 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import ecommerceframeworkbuilding.pageobjects.CartPage;
+import ecommerceframeworkbuilding.pageobjects.CheckOut;
+import ecommerceframeworkbuilding.pageobjects.Confirmationpage;
 import ecommerceframeworkbuilding.pageobjects.Landingpage;
 import ecommerceframeworkbuilding.pageobjects.Product;
 import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoveryStrategy.Explicit;
 
 public class StandAloneTest {
 	WebDriver driver;
+
 	@Test
-	public void login() {
+	public void login() throws InterruptedException {
 		driver = new ChromeDriver();
+		String prdName = "ZARA COAT 3";
 		driver.get("https://rahulshettyacademy.com/client");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		Landingpage landingPage = new Landingpage(driver);
-		landingPage.logIn("testshiwanilama@gmail.com","Test@123");
-		Product product = new Product(driver);
-//		System.out.println(product.Get()); 
-		product. waitElementToAppear(By.className("col-lg-4"));
-//		List<WebElement> products = driver.findElements(By.className("col-lg-4"));
-//		for(WebElement product: products) {
-//			String productName = product.getText();
-////			System.out.println(productName);
-//			if(productName.equals(productToAdd)) {
-////				lWebElement cartBtn = driver.findElement(By.cssSelector(".fa-shopping-cart"));
-////				cartBtn.click();
-//				 product.findElement(By.cssSelector(".card-body button:last-of-type")).click();
-//	                System.out.println("Product added to cart: " + productName);
-//				System.out.println("product added to cart");
-//			}
-//		}
-//		
+		Product product  = landingPage.logIn("testshiwanilama@gmail.com", "Test@123");
+//		Product product = new Product(driver);
+		List<WebElement> allProduct = product.getProductList();
+		product.addToCart(prdName);
+		product.goToCartPage();
+
+		CartPage cartPage = new CartPage(driver);
+		cartPage.isInProductCart(prdName);
+		Assert.assertTrue(cartPage.isInProductCart(prdName), "Product not found in the cart");
+		cartPage.checkoutBtn();
+		CheckOut checkOut = new CheckOut(driver);
+		checkOut.selectCountry("Nepa");
+		checkOut.submitOrder();
+		Confirmationpage confirm = new Confirmationpage(driver);
+		String message = confirm.confirmationMessage();
+		Assert.assertEquals(message, "THANKYOU FOR THE ORDER.");
+		driver.close();
+
 	}
 }
