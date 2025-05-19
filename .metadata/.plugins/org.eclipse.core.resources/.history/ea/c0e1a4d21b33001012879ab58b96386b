@@ -1,0 +1,12 @@
+package ecommerceframeworkbuilding;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+
+public class Base {
+	public void initialization() {
+		Properties property = new Properties();
+		FileInputStream file = new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\GlobalData.properties");
+		property.getProperty(null);
+	}
+}

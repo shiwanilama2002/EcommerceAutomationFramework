@@ -2,16 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-17T13:47:16 NPT" name="Default suite" finished-at="2025-05-17T13:47:26 NPT" duration-ms="10701">
+  <suite started-at="2025-05-19T21:08:42 NPT" name="Default suite" finished-at="2025-05-19T21:08:47 NPT" duration-ms="4927">
     <groups>
     </groups>
-    <test started-at="2025-05-17T13:47:16 NPT" name="Default test" finished-at="2025-05-17T13:47:26 NPT" duration-ms="10701">
-      <class name="ecommerceframeworkbuilding.StandAloneTest">
-        <test-method signature="login()[pri:0, instance:ecommerceframeworkbuilding.StandAloneTest@4550bb58]" started-at="2025-05-17T13:47:16 NPT" name="login" finished-at="2025-05-17T13:47:26 NPT" duration-ms="10523" status="PASS">
+    <test started-at="2025-05-19T21:08:42 NPT" name="Default test" finished-at="2025-05-19T21:08:47 NPT" duration-ms="4927">
+      <class name="ecommerceframeworkbuilding.Invalidlogin">
+        <test-method is-config="true" signature="launchApplication()[pri:0, instance:ecommerceframeworkbuilding.Invalidlogin@6cf0e0ba]" started-at="2025-05-19T21:08:42 NPT" name="launchApplication" finished-at="2025-05-19T21:08:46 NPT" duration-ms="3968" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- login -->
-      </class> <!-- ecommerceframeworkbuilding.StandAloneTest -->
+        </test-method> <!-- launchApplication -->
+        <test-method signature="invalidCredentials()[pri:0, instance:ecommerceframeworkbuilding.Invalidlogin@6cf0e0ba]" started-at="2025-05-19T21:08:46 NPT" name="invalidCredentials" finished-at="2025-05-19T21:08:46 NPT" duration-ms="691" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidCredentials -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:ecommerceframeworkbuilding.Invalidlogin@6cf0e0ba]" started-at="2025-05-19T21:08:46 NPT" name="tearDown" finished-at="2025-05-19T21:08:47 NPT" duration-ms="229" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- ecommerceframeworkbuilding.Invalidlogin -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

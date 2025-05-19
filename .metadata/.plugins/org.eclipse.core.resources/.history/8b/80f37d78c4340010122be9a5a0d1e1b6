@@ -1,0 +1,16 @@
+package ecommerceframeworkbuilding;
+
+import org.testng.annotations.Test;
+
+import ecommerceframeworkbuilding.base.Base;
+import ecommerceframeworkbuilding.pageobjects.Landingpage;
+
+public class Invalidlogin extends Base{
+	@Test
+	public void invalidCredentials() {
+		Landingpage landingPage = new Landingpage(driver);
+		landingPage.logIn("test@gmail.com", "test@123");
+		
+		
+	}
+}

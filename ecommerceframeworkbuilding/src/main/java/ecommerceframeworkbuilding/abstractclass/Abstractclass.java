@@ -29,6 +29,10 @@ public class Abstractclass {
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //		wait.until(ExpectedConditions.invisibilityOf(ele));
 	}
+	public void waitElementToAppearInvalidLogin(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
 	
 	public void goToCartPage() {
 		cartHeader.click();

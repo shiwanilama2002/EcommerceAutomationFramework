@@ -1,0 +1,11 @@
+package ecommerceframeworkbuilding;
+
+import ecommerceframeworkbuilding.base.Base;
+import ecommerceframeworkbuilding.pageobjects.Landingpage;
+
+public class Invalidlogin extends Base{
+	public void invalidCredentials() {
+		Landingpage login = new Landingpage();
+		login.logIn(("test@gmail.com","test@123"));
+	}
+}

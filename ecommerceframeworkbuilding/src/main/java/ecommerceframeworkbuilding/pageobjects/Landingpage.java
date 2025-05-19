@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Landingpage {
+import ecommerceframeworkbuilding.abstractclass.Abstractclass;
+
+public class Landingpage  {
 	WebDriver driver;
 	public Landingpage(WebDriver driver) {
 		this.driver = driver;
@@ -22,6 +24,9 @@ public class Landingpage {
 	@FindBy(id="login")
 	WebElement logIN;
 	
+	@FindBy(id="toast-container")
+	WebElement loginFailed;
+	
 	public Product logIn(String uName, String uPass) {
 		userName.sendKeys(uName);
 		userPassword.sendKeys(uPass);
@@ -30,5 +35,11 @@ public class Landingpage {
 		return product;
 	}
 	
+	public String invalidCredentials() {
+		
+		Abstractclass ab = new Abstractclass(driver);
+		ab.waitElementToAppearInvalidLogin(loginFailed);
+		return loginFailed.getText();
+	}
 	
 }
